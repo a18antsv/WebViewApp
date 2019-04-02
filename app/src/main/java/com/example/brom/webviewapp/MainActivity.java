@@ -1,7 +1,6 @@
 package com.example.brom.webviewapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,8 +11,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
-    //Global variable declaration
+    //Global variables
     private WebView webView;
+    private String homeUrl = "http://wwwlab.iit.his.se/a18antsv/mobilapplikationsdesign/projekt/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
         //Activates javascript compatibility
         webView.getSettings().setJavaScriptEnabled(true);
         //Load url inside WebView element
-        webView.loadUrl("http://wwwlab.iit.his.se/a18antsv/mobilapplikationsdesign/projekt/");
+        webView.loadUrl(homeUrl);
     }
 
+    //Creates and shows Snackbar. Can be closed by event listener
     public void showSnackbar(View v, String m, int d) {
         final Snackbar snackbar = Snackbar.make(v, m, d);
-        snackbar.setAction("STÄNG", new View.OnClickListener() {
+        snackbar.setAction("CLOSE", new View.OnClickListener() {
             @Override
             public void onClick(View v)  {
                 snackbar.dismiss();
@@ -45,20 +46,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    //Select a menu item, do the action the menu item represents
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_contact) {
-            showSnackbar(getWindow().getCurrentFocus(), "Kontakta mig: gotneifhd@gmail.com", Snackbar.LENGTH_INDEFINITE);
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                webView.loadUrl(homeUrl);
+                break;
+            case R.id.action_about:
+                webView.loadUrl("file:///android_asset/about.html");
+                break;
+            case R.id.action_contact:
+                showSnackbar(getWindow().getCurrentFocus(), "Kontakta mig: gotneifhd@gmail.com", Snackbar.LENGTH_INDEFINITE);
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
