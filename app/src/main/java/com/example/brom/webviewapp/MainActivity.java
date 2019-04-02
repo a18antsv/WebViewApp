@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.my_webview);
         //Attaches WebViewClient to the WebView, making it possible to browse the web
         webView.setWebViewClient(new WebViewClient());
-        // 5. Enter the url to load in our WebView
-        // -- Commit and push to your github fork
+        //Activates javascript compatibility
+        webView.getSettings().setJavaScriptEnabled(true);
+        //Load url inside WebView element
+        webView.loadUrl("http://wwwlab.iit.his.se/a18antsv/mobilapplikationsdesign/projekt/");
     }
 
     public void showSnackbar(View v, String m, int d) {
