@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 public class MainActivity extends AppCompatActivity {
     // Create a private member variable that can hold our WebView
@@ -17,18 +18,8 @@ public class MainActivity extends AppCompatActivity {
         /* This code is run when the App is created. Include code that creates your WebView */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // The FAB-code can be removed
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showSnackBar(v, "Kontakta mig: gotneifhd@gmail.com", Snackbar.LENGTH_INDEFINITE);
-            }
-        });
-
 
         // 1. Create a WebView element in the layout file content_main.xml
         // -- Commit and push to your github fork
@@ -43,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // -- Commit and push to your github fork
     }
 
-    public void showSnackBar(View v, String m, int d) {
+    public void showSnackbar(View v, String m, int d) {
         final Snackbar snackbar = Snackbar.make(v, m, d);
         snackbar.setAction("STÄNG", new View.OnClickListener() {
             @Override
@@ -63,13 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_contact) {
+            showSnackbar(getWindow().getCurrentFocus(), "Kontakta mig: gotneifhd@gmail.com", Snackbar.LENGTH_INDEFINITE);
             return true;
         }
 
