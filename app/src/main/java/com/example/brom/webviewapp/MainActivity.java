@@ -24,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                showSnackBar(v, "Kontakta mig: gotneifhd@gmail.com", Snackbar.LENGTH_INDEFINITE);
             }
         });
+
+
         // 1. Create a WebView element in the layout file content_main.xml
         // -- Commit and push to your github fork
         // 2. Give the WebView element created in step 1 ID "my_webview"
@@ -40,6 +41,17 @@ public class MainActivity extends AppCompatActivity {
         // -- Commit and push to your github fork
         // 5. Enter the url to load in our WebView
         // -- Commit and push to your github fork
+    }
+
+    public void showSnackBar(View v, String m, int d) {
+        final Snackbar snackbar = Snackbar.make(v, m, d);
+        snackbar.setAction("STÄNG", new View.OnClickListener() {
+            @Override
+            public void onClick(View v)  {
+                snackbar.dismiss();
+            }
+        });
+        snackbar.show();
     }
 
     @Override
