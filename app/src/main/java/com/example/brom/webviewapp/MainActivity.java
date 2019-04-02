@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
     //Global variable declaration
@@ -23,11 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Gets the webview element created in content_main.xml and stores it in a declared variable
         webView = (WebView) findViewById(R.id.my_webview);
-        // -- Commit and push to your github fork
-        // 3. Locate the WebView element created in step 1 using the ID created in step 2
-        // 4. Create a new WebViewClient to attach to our WebView. This allows us to
-        //    browse the web inside our app.
-        // -- Commit and push to your github fork
+        //Attaches WebViewClient to the WebView, making it possible to browse the web
+        webView.setWebViewClient(new WebViewClient());
         // 5. Enter the url to load in our WebView
         // -- Commit and push to your github fork
     }
